@@ -4,12 +4,22 @@ var app = angular.module('userRoutes', ['ngRoute'])
         $routeProvider
 
             .when('/logout', {
-                templateUrl : '/app/views/users/authentication/logout.html',
+                templateUrl : '/app/views/authentication/logout.html',
+                authenticated : false
+            })            
+            
+            .when('/register', {
+                templateUrl : '/app/views/authentication/register.html',
                 authenticated : false
             })
 
             .when('/prizes', {
                 templateUrl : 'app/views/dashboard/prize/prizes.html'
+            })
+
+
+            .when('/users', {
+                templateUrl : 'app/views/dashboard/scaler/scalability.html'
             })
 
             .otherwise( { redirectTo : '/'});

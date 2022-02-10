@@ -9,7 +9,7 @@ const Passport        = require("passport");
 
 const constant        = require(__basePath + 'app/core/constant');
 const mongodbService  = require(constant.path.app + 'service/mongo.service'); // MongoDB Service
-//const passportService = require(constant.path.app + 'service/passport.service').init(); // Passport Initilized
+const passportService = require(constant.path.app + 'service/passport.service').init(); // Passport Initilized
 
 app.use(cors())
 app.use(morgan('dev'));

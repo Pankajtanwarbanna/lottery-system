@@ -71,7 +71,7 @@
         <div class="dt-root__inner">
 
             <!-- Login Container -->
-            <div class="dt-login--container" style="background-image: url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=996&q=80');background-size: cover" ng-show="main.home && !main.isLoggedIn">
+            <div class="dt-login--container" ng-show="main.home && !main.isLoggedIn" style="background-image: url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=996&q=80');background-size: cover" ng-show="main.home && !main.isLoggedIn">
 
                 <!-- Login Content -->
                 <div class="dt-login__content-wrapper">
@@ -115,6 +115,7 @@
                                 <!-- Form Group -->
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary text-uppercase">Login</button>
+                                    <a href="#" class="text-success ml-2">Not registered?</a>
                                 </div>
                                 <!-- /form group -->
                             </form>
@@ -244,13 +245,6 @@
                                         <span class="dt-side-nav__text">Home</span>
                                     </a>
                                 </li>
-
-                                <li class="dt-side-nav__item">
-                                    <a href="/prizes" class="dt-side-nav__link" title="Metrics">
-                                        <i class="icon icon-tag icon-fw icon-lg"></i>
-                                        <span class="dt-side-nav__text">Prizes</span>
-                                    </a>
-                                </li>
                             </ul>
                             <!-- /sidebar navigation -->
                             <ul class="dt-side-nav">
@@ -259,6 +253,14 @@
                                 <li class="dt-side-nav__item dt-side-nav__header">
                                     <span class="dt-side-nav__text">Prize Management</span>
                                 </li>
+
+                                <li class="dt-side-nav__item">
+                                    <a href="/prizes" class="dt-side-nav__link" title="Metrics">
+                                        <i class="icon icon-tag icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">Prizes</span>
+                                    </a>
+                                </li>
+
                                 <!-- /menu header -->
                                 <li class="dt-side-nav__item">
                                     <a href="/" class="dt-side-nav__link" title="Metrics">
@@ -276,7 +278,7 @@
                                 </li>
                                 <!-- /menu header -->
                                 <li class="dt-side-nav__item">
-                                    <a href="/" class="dt-side-nav__link" title="Metrics">
+                                    <a href="/users" class="dt-side-nav__link" title="Metrics">
                                         <i class="icon icon-users icon-fw icon-lg"></i>
                                         <span class="dt-side-nav__text">Users</span>
                                     </a>
@@ -287,15 +289,138 @@
 
 
                     </aside>
-                    <!-- Site Content Wrapper -->
+
                     <div class="dt-content-wrapper">
 
                         <!-- Site Content -->
                         <div class="dt-content">
 
                             <div ng-if="main.home && main.isLoggedIn">
+                                <!-- Profile -->
+                                <div class="profile">
 
-                                
+                                    <!-- Profile Content -->
+                                    <div class="profile-content">
+
+                                        <!-- Grid -->
+                                        <div class="row">
+
+                                            <div class="col-xl-12 col-12 order-xl-2">
+
+                                                <!-- Grid -->
+                                                <div class="row">
+                                                    <!-- Grid Item -->
+                                                    <div class="col-sm-3">
+                                                        <!-- Card -->
+                                                        <div class="dt-card">
+                                        
+                                                            <!-- Card Body -->
+                                                            <div class="dt-card__body d-flex flex-sm-column">
+                                                                <div class="mb-sm-7 mr-7 mr-sm-0">
+                                                                    <i class="icon icon-users dt-icon-bg bg-primary text-primary"></i>
+                                                                </div>
+                                                                <div class="flex-1">
+                                                                    <div class="d-flex align-items-center mb-2">
+                                                                        <span class="h2 mb-0 font-weight-500 mr-2">10</span>
+                                                                    </div>
+                                                                    <div class="h5 mb-2">Today's Active Users</div>
+                                                                    <p class="card-text text-light-gray f-12">Last update just now</p>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /card body -->
+                                        
+                                                        </div>
+                                                        <!-- /card -->
+                                                    </div>
+                                                    <!-- /grid item -->
+                                        
+                                                    <!-- Grid Item -->
+                                                    <div class="col-sm-3">
+                                                        <!-- Card -->
+                                                        <div class="dt-card">
+                                        
+                                                            <!-- Card Body -->
+                                                            <div class="dt-card__body d-flex flex-sm-column">
+                                                                <div class="mb-sm-7 mr-7 mr-sm-0">
+                                                                    <i class="icon icon-company dt-icon-bg bg-success text-success"></i>
+                                                                </div>
+                                                                <div class="flex-1">
+                                                                    <div class="d-flex align-items-center mb-2">
+                                                                        <span class="h2 mb-0 font-weight-500 mr-2">124</span>
+                                                                    </div>
+                                                                    <div class="h5 mb-2">Total Users</div>
+                                                                    <p class="card-text text-light-gray f-12">update just now</p>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /card body -->
+                                        
+                                                        </div>
+                                                        <!-- /card -->
+                                                    </div>
+                                                    <!-- /grid item -->
+                                        
+                                                    <!-- Grid Item -->
+                                                    <div class="col-sm-3">
+                                                        <!-- Card -->
+                                                        <div class="dt-card">
+                                        
+                                                            <!-- Card Body -->
+                                                            <div class="dt-card__body d-flex flex-sm-column">
+                                                                <div class="mb-sm-7 mr-7 mr-sm-0">
+                                                                    <i class="icon icon-customer dt-icon-bg bg-secondary text-secondary"></i>
+                                                                </div>
+                                                                <div class="flex-1">
+                                                                    <div class="d-flex align-items-center mb-2">
+                                                                        <span class="h2 mb-0 font-weight-500 mr-2">1544</span>
+                                                                    </div>
+                                                                    <div class="h5 mb-2">Total Coupons Baught</div>
+                                                                    <p class="card-text text-light-gray f-12">Just updated</p>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /card body -->
+                                        
+                                                        </div>
+                                                        <!-- /card -->
+                                                    </div>
+                                                    <!-- /grid item -->
+                                        
+                                                    <!-- Grid Item -->
+                                                    <div class="col-sm-3">
+                                                        <!-- Card -->
+                                                        <div class="dt-card">
+                                        
+                                                            <!-- Card Body -->
+                                                            <div class="dt-card__body d-flex flex-sm-column">
+                                                                <div class="mb-sm-7 mr-7 mr-sm-0">
+                                                                    <i class="icon icon-revenue-new dt-icon-bg bg-orange text-orange"></i>
+                                                                </div>
+                                                                <div class="flex-1">
+                                                                    <div class="d-flex align-items-center mb-2">
+                                                                        <span class="h2 mb-0 font-weight-500 mr-2">₹ 20,00,000</span>
+                                                                    </div>
+                                                                    <div class="h5 mb-2">Total Prizes</div>
+                                                                    <p class="card-text text-light-gray f-12">Just updated</p>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /card body -->
+                                        
+                                                        </div>
+                                                        <!-- /card -->
+                                                    </div>
+                                                    <!-- /grid item -->
+                                                </div>
+                                                <!-- /grid -->
+                                        
+                                            </div>
+
+                                        </div>
+                                        <!-- /grid -->
+
+                                    </div>
+                                    <!-- /profile content -->
+
+                                </div>
+                                <!-- /profile -->
                             </div>
 
                             <div ng-show="!main.home">
@@ -305,9 +430,9 @@
                         </div>
                         <!-- /site content -->
                     </div>
-                    <!-- /site content wrapper -->
+                    <!-- Site Content Wrapper -->
                 </main>
-            </div>
+            </div>     
         </div>
     </div>
 
@@ -332,16 +457,6 @@
     <script src="/assets/modules/chartist/dist/chartist.min.js"></script>
     <script src="/assets/modules//owl.carousel/dist/owl.carousel.min.js"></script>
     <script src="/assets/js/custom/charts/dashboard-listing.js"></script>
-
-    <script>
-        const spinButton = document.getElementById('spin');
-        const dial = document.querySelector('.dial');
-
-        spinButton.addEventListener('click', () => {
-            dial.classList.toggle("spinning");
-            document.querySelector('content-container').classList.toggle('activated');
-        });
-    </script>
 </body>
 
 </html>

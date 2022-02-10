@@ -26,12 +26,14 @@ module.exports          = {
         });
         
         //PassportJs JWT strategy for user normal registration and login 
-        Passport.use('admin',new JwtStrategy(opts.jwt, function(req, jwt_payload, done) {
+        Passport.use('user',new JwtStrategy(opts.jwt, function(req, jwt_payload, done) {
+            console.log(jwt_payload)
             User.findOne({
                 _id  : jwt_payload ? jwt_payload.userId || null : null
             })
                 .then(u => {
-                    if(u && u.role && u.role.toUpperCase() === 'ADMIN') {
+                    console.log(u)
+                    if(u && u.role && u.role.toUpperCase() === 'USER') {
                         done(null, u);                    
                     }
                     else done(null, false);
@@ -39,12 +41,14 @@ module.exports          = {
                 .catch(e => done(e, false));
         }));
 
-        Passport.use('super-admin',new JwtStrategy(opts.jwt, function(req, jwt_payload, done) {
+        Passport.use('admin',new JwtStrategy(opts.jwt, function(req, jwt_payload, done) {
+            console.log(jwt_payload)
+            
             User.findOne({
                 _id  : jwt_payload ? jwt_payload.userId || null : null
             })
                 .then(u => {
-                    if(u && u.role && u.role.toUpperCase() === 'SUPER-ADMIN') {
+                    if(u && u.role && u.role.toUpperCase() === 'ADMIN') {
                         done(null, u);                    
                     }
                     else done(null, false);

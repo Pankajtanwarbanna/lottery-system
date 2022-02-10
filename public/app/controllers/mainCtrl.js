@@ -21,7 +21,7 @@ angular.module('mainController', ['authServices'])
             app.home = true;
         }
 
-        if(!auth.isLoggedIn()) {
+        if(auth.isLoggedIn()) {
 
             app.isLoggedIn = true;
             auth.getUser().then(function (data){
@@ -30,13 +30,7 @@ angular.module('mainController', ['authServices'])
                 app.role = data.data.role;
                 app.userId = data.data._id;
                 app.loadme = true;
-                app.authorized = (data.data.role === 'SUPER-ADMIN');
-
-                user.getRedeems('?status=CREATED').then((data) => {
-                    app.redeems = data.data.response.data;
-                }).catch((error) => {
-                    app.redeems = [];
-                })
+                app.authorized = (data.data.role === 'ADMIN');
             });
 
         } else {
@@ -62,11 +56,7 @@ angular.module('mainController', ['authServices'])
                 app.loading = false;
                 app.successMsg = 'User authenticated. Logging in...';
                 $timeout(function () {
-                    if(data?.data?.response?.data?.user?.role === 'SUPER-ADMIN') {
-                        $location.path('/settings');
-                    } else {
-                        $location.path('/redeem');
-                    }
+                    $location.path('/settings');
                     app.logData = '';
                     app.successMsg = false;
                 }, 2000);
@@ -85,21 +75,4 @@ angular.module('mainController', ['authServices'])
             $location.path('/');
         }, 1000);
     };
-
-    this.redeemAction   = (redeemId, action) => {
-        user.redeemAction(redeemId, action).then((data) => {
-            app.successMsg = data.data.response.message;
-            user.getRedeems('?status=CREATED').then((data) => {
-                app.redeems = data.data.response.data;
-            }).catch((error) => {
-                app.redeems = [];
-            })
-        }).catch((error) => {
-            app.errorMsg =data.data.response.message;
-        })
-    }
-
-    app.check   = (id) => {
-        app.currentRedeem = app.redeems.filter((redeem) => redeem._id === id);
-    }
 });
