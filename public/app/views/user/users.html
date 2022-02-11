@@ -21,13 +21,12 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="user in user.users">
+                        <tr ng-repeat="user in users.users">
                             <th scope="row">{{ $index + 1}}.</th>
                             <td>{{ user.name }}</td>
                             <td>+91 {{ user.mobileNumber }}</td>
                             <td>{{ user.role }}</td>
                             <td>{{ user.createdAt | date : 'MMM d, y h:mm a' }}</td>
-                            <td>{{ user.market.name }}</td>
                         </tr>
                         </tbody>
                     </table>

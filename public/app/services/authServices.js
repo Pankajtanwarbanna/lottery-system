@@ -16,6 +16,15 @@ angular.module('authServices',[])
         });
     };
 
+    // auth.signup(signupData);
+    authFactory.signup = function (signupData) {
+        return $http.post('/api/user/register', signupData).then(function (data) {
+            return data;
+        }).catch((error) => {
+            return error;
+        });
+    };
+
     // auth.isLoggedIn()
     authFactory.isLoggedIn = function () {
         if(authToken.getToken()) {

@@ -3,7 +3,7 @@
 */
 angular.module('userCtrl',['userServices','fileModelDirective','uploadFileService'])
 
-.controller('userCtrl', function (user) {
+.controller('usersCtrl', function (user) {
     var app = this;
 
     // get all customers

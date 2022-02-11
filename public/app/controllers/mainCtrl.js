@@ -10,6 +10,7 @@ angular.module('mainController', ['authServices'])
 
     app.loadme = false;
     app.home = true;
+    app.login = true;
 
     $rootScope.$on('$routeChangeStart', function (event, next, current) {
 
@@ -42,6 +43,12 @@ angular.module('mainController', ['authServices'])
         }
     });
 
+    this.changeAuth = () => {
+        app.successMsg = '';
+        app.errorMsg = '';
+        app.login = !app.login;
+    }
+
 
     this.doLogin = function (logData) {
         //console.log(this.logData);
@@ -60,6 +67,27 @@ angular.module('mainController', ['authServices'])
                     app.logData = '';
                     app.successMsg = false;
                 }, 2000);
+            } else {
+                app.disabled = false;
+                app.loading = false;
+                app.errorMsg = data.data.response.message;
+            }
+        });
+    };
+
+    this.doSignup = function (signupData) {
+        //console.log(this.logData);
+        app.successMsg = '';
+        app.errorMsg = '';
+        app.loading = true;
+        app.expired = false;
+        app.disabled = false;
+
+        console.log(app.signupData);
+        auth.signup(app.signupData).then(function (data) {
+            if(data.data.status) {
+                app.loading = false;
+                app.successMsg = 'User registered!';
             } else {
                 app.disabled = false;
                 app.loading = false;

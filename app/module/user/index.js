@@ -9,6 +9,7 @@ const userController    = require(constant.path.module + 'user/user.controller')
 
 const AdminGuard        = Passport.authenticate(['admin'], { session : false })
 const UserGuard         = Passport.authenticate(['user'], { session : false });
+const Guard             = Passport.authenticate(['user', 'admin'], { session : false });
 
 /* User Routes */ 
 router.post(
@@ -26,7 +27,7 @@ router.get(
 
 router.get(
     '/me',
-    UserGuard,
+    Guard,
     userController.me
 );
 

@@ -12,6 +12,7 @@ exports.createUser          = (payload, callback) => {
 
     user.save(function(error, result) {
         if(error) {
+            console.log(error)
             return callback(errorHelper.findMongoError(error, 'Mobile Number'))
         }
         return callback(null, result);

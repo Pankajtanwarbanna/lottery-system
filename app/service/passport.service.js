@@ -27,12 +27,10 @@ module.exports          = {
         
         //PassportJs JWT strategy for user normal registration and login 
         Passport.use('user',new JwtStrategy(opts.jwt, function(req, jwt_payload, done) {
-            console.log(jwt_payload)
             User.findOne({
                 _id  : jwt_payload ? jwt_payload.userId || null : null
             })
                 .then(u => {
-                    console.log(u)
                     if(u && u.role && u.role.toUpperCase() === 'USER') {
                         done(null, u);                    
                     }
@@ -41,9 +39,7 @@ module.exports          = {
                 .catch(e => done(e, false));
         }));
 
-        Passport.use('admin',new JwtStrategy(opts.jwt, function(req, jwt_payload, done) {
-            console.log(jwt_payload)
-            
+        Passport.use('admin',new JwtStrategy(opts.jwt, function(req, jwt_payload, done) {            
             User.findOne({
                 _id  : jwt_payload ? jwt_payload.userId || null : null
             })
