@@ -32,4 +32,33 @@ angular.module('userCtrl',['userServices','fileModelDirective','uploadFileServic
             app.errorMsg = 'Oops, something went wrong, please try again.';
         })
     };
-});
+})
+
+.controller('addPrizeCtrl', function(user) {
+    let app             = this;
+    app.totalPrizes     = 3;
+
+    app.addNewPrize     = (prizeData) => {
+        console.log(app.prizeData)
+        // validate the coupon value 
+        user.addNewPrize(app.prizeData).then((data) => {
+            app.loading = false;
+            app.successMsg = 'Prize added successfully!';
+        }).catch((error) => {
+            app.errorMsg = error.data.response.message;
+            app.loading = false;
+        })
+    }
+})
+
+.controller('prizesCtrl', function(user) {
+    let app             = this;
+
+    user.getPrizes().then((data) => {
+        app.loading = false;
+        app.prizes = data.data.response.data;
+    }).catch((error) => {
+        app.errorMsg = error.data.response.message;
+        app.loading = false;
+    })
+})

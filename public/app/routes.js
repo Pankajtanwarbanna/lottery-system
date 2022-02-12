@@ -14,7 +14,19 @@ var app = angular.module('userRoutes', ['ngRoute'])
             })
 
             .when('/prizes', {
-                templateUrl : 'app/views/dashboard/prize/prizes.html'
+                templateUrl : 'app/views/dashboard/prize/prizes.html',
+                authenticated : true,
+                permission : ['ADMIN'],
+                controller : 'prizesCtrl',
+                controllerAs : 'prizes'
+            })
+
+            .when('/add-prize', {
+                templateUrl : 'app/views/dashboard/prize/add-prize.html',
+                authenticated : true,
+                permission : ['ADMIN'],
+                controller : 'addPrizeCtrl',
+                controllerAs : 'addPrize'
             })
 
             .when('/users', {

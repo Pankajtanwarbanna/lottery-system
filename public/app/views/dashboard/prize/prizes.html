@@ -9,13 +9,12 @@
 <div class="col-xl-12">
 
     <!-- Card -->
-    <div class="card">
+    <div class="card" ng-repeat="prize in prizes.prizes">
 
         <!-- Card header -->
-        <div class="card-header card-nav border-bottom-0">
+        <div class="card-header border-bottom-0">
             <div class="d-flex align-items-center justify-content-between">
-                <h3 class="dt-card__title">Dreamfullfill Prizes</h3>
-                <!-- /search box -->
+                <h3 class="dt-card__title">{{ prize.name }}</h3>
             </div>
         </div>
         <!-- /card header -->
@@ -30,7 +29,7 @@
                 <div class="card-body">
 
                     <!-- Card -->
-                    <div class="card shadow-none horizontal rounded-0 pb-8 border-bottom">
+                    <div class="card shadow-none horizontal rounded-0 pb-8 border-bottom" ng-repeat="prizeData in prize.prizes">
 
                         <!-- Slider -->
                         <div class="dt-slider rounded-xl overflow-hidden order-sm-2">
@@ -39,23 +38,11 @@
                             <div class="dt-slider__header">
 
                                 <span class="badge bg-orange text-white text-uppercase">featured</span>
-
-                                <!-- Checkbox -->
-                                <div class="dt-checkbox dt-checkbox-icon dt-checkbox-only">
-                                    <input id="checkbox-1" type="checkbox" checked="">
-                                    <label class="font-weight-light dt-checkbox-content" for="checkbox-1">
-                                        <span class="unchecked"><i class="icon icon-heart-o text-white"></i></span>
-                                        <span class="checked"><i class="icon icon-heart text-white"></i></span>
-                                    </label>
-                                </div>
                                 <!-- /checkbox -->
                             </div>
                             <!-- /slider header -->
 
                             <div class="owl-carousel owl-theme owl-loaded owl-drag">
-
-
-
                                 <div class="owl-stage-outer">
                                     <div class="owl-stage"
                                         style="transform: translate3d(0px, 0px, 0px); transition: all 0.25s ease 0s; width: 503px;">
@@ -64,24 +51,6 @@
                                         </div>
 
                                     </div>
-                                </div>
-                                <div class="owl-nav disabled">
-                                    <button type="button" role="presentation" class="owl-prev">
-                                        <span aria-label="Previous">‹</span>
-                                    </button>
-                                    <button type="button" role="presentation" class="owl-next">
-                                        <span aria-label="Next">›</span>
-                                    </button>
-                                </div>
-                                <div class="owl-dots">
-                                    <button role="button" class="owl-dot active">
-                                        <span></span>
-                                    </button>
-                                    <button role="button" class="owl-dot">
-                                        <span></span>
-                                    </button><button role="button" class="owl-dot">
-                                        <span></span>
-                                    </button>
                                 </div>
                             </div>
 
@@ -95,17 +64,17 @@
                             <div class="card-body pt-sm-0 pb-0 px-0 pr-sm-6 pr-md-8">
 
                                 <!-- Badges -->
-                                <span class="badge badge-secondary text-uppercase mb-2">1st Prize</span>
+                                <span class="badge badge-secondary text-uppercase mb-2"> Prize #{{ $index + 1 }}</span>
                                 <!-- /badges -->
 
                                 <!-- Card Title-->
                                 <h3 class="card-title font-weight-normal text-truncate">
-                                    A Luxury family 2BHK at beach side
+                                    {{ prizeData.title }}
                                 </h3>
                                 <!-- Card Title-->
 
                                 <!-- Card Sub Title-->
-                                <h5 class="card-subtitle">10 Feb, 2022. South Western Ave</h5>
+                                <h5 class="card-subtitle">{{ prizeData.description }}</h5>
                                 <!-- /card sub title-->
 
                                 <!-- Pricing -->
@@ -117,8 +86,8 @@
 
                                 <!-- Card Link -->
                                 <a class="card-link font-weight-500" href="javascript:void(0)">
-                                    <span>Check in detail</span>
-                                    <i class="icon icon-arrow-long-right icon-lg ml-1"></i>
+                                    <span>{{ prizeData.date | date : 'MMM d, y. h:mm a' }} </span>
+                                    <i class="icon icon-time icon-sm ml-1"></i>
                                 </a>
                                 <!-- /card link -->
 
@@ -130,301 +99,6 @@
 
                     </div>
                     <!-- /card -->
-
-                    <!-- Card -->
-                    <div class="card shadow-none horizontal rounded-0 pb-8 border-bottom">
-
-                        <!-- Slider -->
-                        <div class="dt-slider rounded-xl overflow-hidden order-sm-2">
-
-                            <!-- Slider Header -->
-                            <div class="dt-slider__header">
-
-                                <span class="badge bg-orange text-white text-uppercase">featured</span>
-
-                                <!-- Checkbox -->
-                                <div class="dt-checkbox dt-checkbox-icon dt-checkbox-only">
-                                    <input id="checkbox-1" type="checkbox" checked="">
-                                    <label class="font-weight-light dt-checkbox-content" for="checkbox-1">
-                                        <span class="unchecked"><i class="icon icon-heart-o text-white"></i></span>
-                                        <span class="checked"><i class="icon icon-heart text-white"></i></span>
-                                    </label>
-                                </div>
-                                <!-- /checkbox -->
-                            </div>
-                            <!-- /slider header -->
-
-                            <div class="owl-carousel owl-theme owl-loaded owl-drag">
-
-
-
-                                <div class="owl-stage-outer">
-                                    <div class="owl-stage"
-                                        style="transform: translate3d(0px, 0px, 0px); transition: all 0.25s ease 0s; width: 503px;">
-                                        <div class="owl-item active" style="width: 167.609px;">
-                                            <img src="../assets/images/grid/property-6.jpeg" alt="Property">
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-nav disabled">
-                                    <button type="button" role="presentation" class="owl-prev">
-                                        <span aria-label="Previous">‹</span>
-                                    </button>
-                                    <button type="button" role="presentation" class="owl-next">
-                                        <span aria-label="Next">›</span>
-                                    </button>
-                                </div>
-                                <div class="owl-dots">
-                                    <button role="button" class="owl-dot active">
-                                        <span></span>
-                                    </button>
-                                    <button role="button" class="owl-dot">
-                                        <span></span>
-                                    </button><button role="button" class="owl-dot">
-                                        <span></span>
-                                    </button>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- /slider -->
-
-                        <!-- Card Stacked -->
-                        <div class="card-stacked order-sm-1">
-
-                            <!-- Card Body -->
-                            <div class="card-body pt-sm-0 pb-0 px-0 pr-sm-6 pr-md-8">
-
-                                <!-- Badges -->
-                                <span class="badge badge-secondary text-uppercase mb-2">2nd Prize</span>
-                                <!-- /badges -->
-
-                                <!-- Card Title-->
-                                <h3 class="card-title font-weight-normal text-truncate">
-                                    A 1BHK flat @ Mumbai
-                                </h3>
-                                <!-- Card Title-->
-
-                                <!-- Card Sub Title-->
-                                <h5 class="card-subtitle">10 Feb, 2022. South Western Ave</h5>
-                                <!-- /card sub title-->
-
-                                <!-- Pricing -->
-                                <div class="d-flex align-items-baseline price mb-1">
-                                    <span class="d-block text-primary font-weight-500 display-5 mr-1">XXXX</span>
-                                    <span class="d-inline-block text-light-gray f-12">to be revealed..</span>
-                                </div>
-                                <!-- /pricing -->
-
-                                <!-- Card Link -->
-                                <a class="card-link font-weight-500" href="javascript:void(0)">
-                                    <span>Check in detail</span>
-                                    <i class="icon icon-arrow-long-right icon-lg ml-1"></i>
-                                </a>
-                                <!-- /card link -->
-
-                            </div>
-                            <!-- /card body -->
-
-                        </div>
-                        <!-- /card stacked -->
-
-                    </div>
-                    <!-- /card -->
-
-                    <!-- Card -->
-                    <div class="card shadow-none horizontal rounded-0 pb-8 border-bottom">
-
-                        <!-- Slider -->
-                        <div class="dt-slider rounded-xl overflow-hidden order-sm-2">
-
-                            <!-- Slider Header -->
-                            <div class="dt-slider__header">
-
-                                <span class="badge bg-orange text-white text-uppercase">featured</span>
-
-                                <!-- Checkbox -->
-                                <div class="dt-checkbox dt-checkbox-icon dt-checkbox-only">
-                                    <input id="checkbox-1" type="checkbox" checked="">
-                                    <label class="font-weight-light dt-checkbox-content" for="checkbox-1">
-                                        <span class="unchecked"><i class="icon icon-heart-o text-white"></i></span>
-                                        <span class="checked"><i class="icon icon-heart text-white"></i></span>
-                                    </label>
-                                </div>
-                                <!-- /checkbox -->
-                            </div>
-                            <!-- /slider header -->
-
-                            <div class="owl-carousel owl-theme owl-loaded owl-drag">
-
-
-
-                                <div class="owl-stage-outer">
-                                    <div class="owl-stage"
-                                        style="transform: translate3d(0px, 0px, 0px); transition: all 0.25s ease 0s; width: 503px;">
-                                        <div class="owl-item active" style="width: 167.609px;">
-                                            <img src="../assets/images/grid/property-6.jpeg" alt="Property">
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="owl-nav disabled">
-                                    <button type="button" role="presentation" class="owl-prev">
-                                        <span aria-label="Previous">‹</span>
-                                    </button>
-                                    <button type="button" role="presentation" class="owl-next">
-                                        <span aria-label="Next">›</span>
-                                    </button>
-                                </div>
-                                <div class="owl-dots">
-                                    <button role="button" class="owl-dot active">
-                                        <span></span>
-                                    </button>
-                                    <button role="button" class="owl-dot">
-                                        <span></span>
-                                    </button><button role="button" class="owl-dot">
-                                        <span></span>
-                                    </button>
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- /slider -->
-
-                        <!-- Card Stacked -->
-                        <div class="card-stacked order-sm-1">
-
-                            <!-- Card Body -->
-                            <div class="card-body pt-sm-0 pb-0 px-0 pr-sm-6 pr-md-8">
-
-                                <!-- Badges -->
-                                <span class="badge badge-secondary text-uppercase mb-2">3rd Prize</span>
-                                <!-- /badges -->
-
-                                <!-- Card Title-->
-                                <h3 class="card-title font-weight-normal text-truncate">
-                                    A Luxury family 1BHK
-                                </h3>
-                                <!-- Card Title-->
-
-                                <!-- Card Sub Title-->
-                                <h5 class="card-subtitle">10 Feb, 2022. South Western Ave</h5>
-                                <!-- /card sub title-->
-
-                                <!-- Pricing -->
-                                <div class="d-flex align-items-baseline price mb-1">
-                                    <span class="d-block text-primary font-weight-500 display-5 mr-1">XXXX</span>
-                                    <span class="d-inline-block text-light-gray f-12">to be revealed..</span>
-                                </div>
-                                <!-- /pricing -->
-
-                                <!-- Card Link -->
-                                <a class="card-link font-weight-500" href="javascript:void(0)">
-                                    <span>Check in detail</span>
-                                    <i class="icon icon-arrow-long-right icon-lg ml-1"></i>
-                                </a>
-                                <!-- /card link -->
-
-                            </div>
-                            <!-- /card body -->
-
-                        </div>
-                        <!-- /card stacked -->
-
-                    </div>
-                    <!-- /card -->
-                </div>
-                <!-- /card body -->
-
-            </div>
-            <!-- /tab panel -->
-
-        </div>
-        <!-- /tab content-->
-
-    </div>
-    <!-- /card -->
-
-</div>
-
-<div class="col-xl-12" ng-if="false">
-
-    <!-- Card -->
-    <div class="card">
-
-        <!-- Card header -->
-        <div class="card-header card-nav border-bottom-0">
-            <div class="d-flex align-items-center justify-content-between">
-                <h3 class="dt-card__title">Dreamfullfill Prizes</h3>
-                <!-- /search box -->
-            </div>
-        </div>
-        <!-- /card header -->
-
-        <!-- Tab Content-->
-        <div class="tab-content">
-
-            <!-- Tab panel -->
-            <div id="popular" class="tab-pane active">
-
-                <!-- Card Body -->
-                <div class="card-body">
-                    <div class="container">
-                        <div class="board">
-                            <div class="spinner-table">
-                                <div class="dial">
-                                    <div class="slice">
-                                        <div class="label">1</div>
-                                    </div>
-                                    <div class="slice">
-                                        <div class="label">2</div>
-                                    </div>
-                                    <div class="slice">
-                                        <div class="label">3</div>
-                                    </div>
-                                    <div class="slice">
-                                        <div class="label">4</div>
-                                    </div>
-                                    <div class="slice">
-                                        <div class="label">5</div>
-                                    </div>
-                                    <div class="slice">
-                                        <div class="label">6</div>
-                                    </div>
-                                    <div class="slice">
-                                        <div class="label">7</div>
-                                    </div>
-                                    <div class="slice">
-                                        <div class="label">8</div>
-                                    </div>
-                                    <div class="slice">
-                                        <div class="label">9</div>
-                                    </div>
-                                    <div class="slice">
-                                        <div class="label">10</div>
-                                    </div>
-                                    <div class="slice">
-                                        <div class="label">11</div>
-                                    </div>
-                                    <div class="slice">
-                                        <div class="label">12</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="arrow">
-                                <span class="pointer"></span>
-                            </div>
-                        </div>
-
-                        <div class="content-container">
-                            <div class="pre">
-                                <button id="spin">Spin</button>
-                            </div>
-                        </div>
-
-
-                    </div>
                 </div>
                 <!-- /card body -->
 
