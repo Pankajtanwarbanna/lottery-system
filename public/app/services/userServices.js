@@ -12,8 +12,8 @@ angular
       return $http.post("/api/prize", prizes);
     };
 
-    userFactory.getPrizes = function () {
-      return $http.get("/api/prize");
+    userFactory.getPrizes = function (data) {
+      return $http.get("/api/prize" + (data?.prizeId ? '?prizeId=' + data.prizeId : ''));
     };
 
     // get users

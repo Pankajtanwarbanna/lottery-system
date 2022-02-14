@@ -62,3 +62,16 @@ angular.module('userCtrl',['userServices','fileModelDirective','uploadFileServic
         app.loading = false;
     })
 })
+
+.controller('prizeCtrl', function(user, $routeParams) {
+    let app             = this;
+
+    user.getPrizes({ prizeId : $routeParams.prizeId }).then((data) => {
+        app.loading = false;
+        app.prize = data.data.response.data[0];
+    }).catch((error) => {
+        app.errorMsg = error.data.response.message;
+        app.loading = false;
+    })
+})
+

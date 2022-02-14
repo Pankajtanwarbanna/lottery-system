@@ -29,6 +29,14 @@ var app = angular.module('userRoutes', ['ngRoute'])
                 controllerAs : 'addPrize'
             })
 
+            .when('/prize/:prizeId', {
+                templateUrl : 'app/views/dashboard/prize/prize.html',
+                authenticated : true,
+                permission : ['ADMIN'],
+                controller : 'prizeCtrl',
+                controllerAs : 'prize'
+            })
+
             .when('/users', {
                 templateUrl : 'app/views/user/users.html',
                 authenticated : true,

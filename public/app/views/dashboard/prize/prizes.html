@@ -79,18 +79,15 @@
 
                                 <!-- Pricing -->
                                 <div class="d-flex align-items-baseline price mb-1">
-                                    <span class="d-block text-primary font-weight-500 display-5 mr-1">XXXX</span>
-                                    <span class="d-inline-block text-light-gray f-12">to be revealed..</span>
+                                    <span class="d-block text-primary font-weight-500 display-5 mr-1">{{ prizeData.code }}</span>
+                                    <span class="d-inline-block text-light-gray f-12">to be revealed at {{ prizeData.date | date : 'MMM d, y. h:mm a' }}</span>
                                 </div>
                                 <!-- /pricing -->
-
-                                <!-- Card Link -->
-                                <a class="card-link font-weight-500" href="javascript:void(0)">
-                                    <span>{{ prizeData.date | date : 'MMM d, y. h:mm a' }} </span>
-                                    <i class="icon icon-time icon-sm ml-1"></i>
+                                <br>
+                                <a class="card-link font-weight-500" href="/prize/{{ prize._id }}">
+                                    <span>Check in detail</span>
+                                    <i class="icon icon-arrow-long-right icon-lg ml-1"></i>
                                 </a>
-                                <!-- /card link -->
-
                             </div>
                             <!-- /card body -->
 
