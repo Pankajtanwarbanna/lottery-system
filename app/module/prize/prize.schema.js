@@ -7,6 +7,10 @@ var prizeSchema     = new mongoose.Schema({
         type        : String,
         required    : true
     },
+    price           : {
+        type        : Number,
+        required    : true
+    },
     prizes          : {
         type        : Array,
         required    : true,

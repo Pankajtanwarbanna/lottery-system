@@ -2,11 +2,11 @@
 <div class="col-xl-12 mb-5">
     <div class="d-flex align-items-center justify-content-between">
         <h1>Prizes</h1>
-        <a class="btn btn-primary" href="/add-prize">Add Prize Now</a>
+        <a class="btn btn-primary" href="/add-prize" ng-if="main.authorized">Add Prize Now</a>
     </div>
 </div>
 
-<div class="col-xl-12">
+<div class="col-xl-12" ng-if="main.authorized">
 
     <!-- Card -->
     <div class="card" ng-repeat="prize in prizes.prizes">
@@ -104,6 +104,115 @@
 
         </div>
         <!-- /tab content-->
+
+    </div>
+    <!-- /card -->
+
+</div>
+
+<div class="col-xl-12 col-md-12 order-xl-1" ng-repeat="prize in prizes.prizes" ng-if="!main.authorized">
+
+    <!-- Card -->
+    <div class="dt-card bg-primary text-white">
+
+        <!-- Card Header -->
+        <div class="dt-card__header pt-6 px-6 mb-4">
+
+            <!-- Card Heading -->
+            <div class="dt-card__heading">
+                <h3 class="dt-card__title text-white">{{ prize.name }}</h3>
+            </div>
+            <!-- /card heading -->
+
+        </div>
+        <!-- /card header -->
+
+        <!-- Card Body -->
+        <div class="dt-card__body px-6">
+            <!-- Grid -->
+            <div class="row no-gutters">
+                <!-- Grid Item -->
+                <div class="col-6 pr-2 border-right">
+                    <div class="display-1 font-weight-500 mb-3">
+                        ₹ {{ prize.price }}<span class="d-inline-block f-14">/ticket</span>
+                    </div>
+                    <p>({{ prize.prizes.length }} amazing & exciting prizes to win!)</p>
+                </div>
+                <!-- /grid item -->
+                <!-- Grid Item -->
+                <div class="col-6 text-center">
+                    <p>Declares very soon.</p>
+                    <div class="mb-3">
+                        <a href="javascript:void(0)" class="btn btn-secondary btn-xs text-uppercase">Buy Now</a>
+                    </div>
+                </div>
+                <!-- /grid item -->
+            </div>
+            <!-- /grid -->
+        </div>
+        <!-- /card body -->
+
+        <div class="col-lg-12 order-xl-12">
+
+            <!-- Card -->
+            <div class="dt-card pb-4">
+    
+                <!-- Card Header -->
+                <div class="dt-card__header mb-5">
+    
+                    <!-- Card Heading -->
+                    <div class="dt-card__heading">
+                        <h3 class="dt-card__title">Prize Details</h3>
+                    </div>
+                    <!-- /card heading -->
+    
+                    <!-- Card Tools -->
+                    <!-- /card tools -->
+    
+                </div>
+                <!-- /card header -->
+    
+                <!-- Card Body -->
+                <div class="dt-card__body p-0">
+                    <!-- Widget -->
+                    <div class="dt-widget dt-widget-hl-item dt-widget-hl-item-space dt-widget-mb-item dt-widget-hover-bg">
+    
+                        <!-- Widget Item -->
+                        <div class="dt-widget__item border-success" ng-repeat="prizeData in prize.prizes">
+    
+                            <!-- Widget Info -->
+                            <div class="dt-widget__info text-truncate">
+                                <div class="dt-widget__title f-16 font-weight-500 text-truncate">
+                                    {{ prizeData.name }}
+                                </div>
+                                <p class="mb-0 text-truncate text-light-gray">
+                                    {{ prizeData.description }}
+                                </p>
+                            </div>
+                            <!-- /widget info -->
+    
+                            <!-- Widget Extra -->
+                            <div class="dt-widget__extra text-right">
+                                <!-- Show Content -->
+                                <div class="show-content">
+                                    <span class="d-block text-dark">Declared on {{ prizeData.date | date : 'MMM d, y. h:mm a' }}</span>
+                                </div>
+                                <!-- /show content -->
+                            </div>
+                            <!-- /widget extra -->
+    
+                        </div>
+                        <!-- /widgets item -->
+    
+                    </div>
+                    <!-- /widget -->
+                </div>
+                <!-- /card body -->
+    
+            </div>
+            <!-- /card -->
+    
+        </div>
 
     </div>
     <!-- /card -->
