@@ -16,6 +16,15 @@ angular
       return $http.get("/api/prize" + (data?.prizeId ? '?prizeId=' + data.prizeId : ''));
     };
 
+    userFactory.purchase = function ({ prizeId }) {
+      return $http.post("/api/prize/" + prizeId + '/purchase');
+    };
+
+    userFactory.purchases = function () {
+      return $http.get("/api/prize/purchases");
+    };
+
+
     // get users
     userFactory.getUsers = function () {
       return $http.get("/api/user");

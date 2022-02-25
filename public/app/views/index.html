@@ -190,7 +190,8 @@
                             <div class="row show-hide-message">
                                 <div class="alert alert-success" ng-show="main.successMsg">
                                     <strong> Success! </strong> {{ main.successMsg }}
-                                    <a href="#" class="text-success ml-2" ng-click="main.changeAuth()">Click here to login now.</a>
+                                    <a href="#" class="text-success ml-2" ng-click="main.changeAuth()">Click here to
+                                        login now.</a>
                                 </div>
                             </div>
 
@@ -329,12 +330,20 @@
                                 </li>
 
                                 <!-- /menu header -->
-                                <li class="dt-side-nav__item">
+                                <li class="dt-side-nav__item" ng-if="!main.authorized">
+                                    <a href="/my-purchases" class="dt-side-nav__link" title="Metrics">
+                                        <i class="icon icon-users icon-fw icon-lg"></i>
+                                        <span class="dt-side-nav__text">My Purchases</span>
+                                    </a>
+                                </li>
+
+                                <!-- /menu header -->
+                                <!-- <li class="dt-side-nav__item">
                                     <a href="/" class="dt-side-nav__link" title="Metrics">
                                         <i class="icon icon-users icon-fw icon-lg"></i>
                                         <span class="dt-side-nav__text">Manage Winners</span>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                             <!-- Sidebar Navigation -->
                             <ul class="dt-side-nav" ng-if="main.authorized">

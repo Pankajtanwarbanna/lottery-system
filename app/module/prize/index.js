@@ -22,6 +22,17 @@ router.get(
     prizeController.getAll
 );
 
+router.post(
+    '/:prizeId/purchase',
+    Guard,
+    prizeController.purchase
+);
+
+router.get(
+    '/purchases',
+    Guard,
+    prizeController.purchases
+);
 
 module.exports = {
     router: router

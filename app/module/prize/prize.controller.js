@@ -42,3 +42,69 @@ exports.getAll          = (req, res) => {
         return res.status(200).json(response.build('SUCCESS', { "data" : result }));
     })
 }
+
+exports.purchase        = (req, res) => {
+    const {
+        prizeId
+    }                   = req.params;
+
+    // get all registered prizes
+    prizeService.getPrizes({ _id : Utility.toObjectId(prizeId) }, (error, result) => {
+        if(error) {
+            return res.status(400).json(response.build('ERROR', 
+                errorHelper.parseError(error) 
+            ));  
+        }
+
+        const prize     = underscore.first(result);
+
+        prizeService.getSubscriptions({ prizeId : Utility.toObjectId(prizeId) }, (error, result) => {
+            if(error) {
+                return res.status(400).json(response.build('ERROR', 
+                    errorHelper.parseError(error) 
+                ));  
+            }
+            const subscription = result.filter((subs) => {
+                return subs.userId.toString() == req.user._id.toString();
+            });
+
+            if(underscore.isEmpty(subscription)) {
+                const subscription  = {
+                    'prizeId'       : Utility.toObjectId(prizeId),
+                    'userId'        : req.user._id,
+                    'price'         : prize.price,
+                    'code'          : (1000 + result.length)
+                }
+
+                prizeService.createSubscription(subscription, (error, result) => {
+                    if(error) {
+                        return res.status(400).json(response.build('ERROR', 
+                            errorHelper.parseError(error) 
+                        ));  
+                    }
+                    return res.status(200).json(response.build('SUCCESS', { "data" : result }));
+                });    
+            } else {
+                return res.status(400).json(response.build('SUCCESS', { "message" : 'You have already purchased! enjoy!', subscription }));
+
+            }
+        })
+    })
+}
+
+exports.purchases       = (req, res) => {
+    const {
+        prizeId
+    }                   = req.params;
+
+    // get all registered prizes
+    prizeService.getSubscriptions({ userId : req.user._id }, (error, result) => {
+        if(error) {
+            return res.status(400).json(response.build('ERROR', 
+                errorHelper.parseError(error) 
+            ));  
+        }
+        return res.status(200).json(response.build('SUCCESS', { "data" : result }));
+
+    })
+}

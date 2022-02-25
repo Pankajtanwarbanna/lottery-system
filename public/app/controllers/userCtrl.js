@@ -73,5 +73,28 @@ angular.module('userCtrl',['userServices','fileModelDirective','uploadFileServic
         app.errorMsg = error.data.response.message;
         app.loading = false;
     })
+
+    // purchase
+    app.purchaseNow    = () => {
+        user.purchase({ prizeId : $routeParams.prizeId }).then((data) => {
+            app.loading = false;
+            app.purchase = data.data.response;
+        }).catch((error) => {
+            app.errorMsg = error.data.response.message;
+            app.loading = false;
+        })
+    }
+})
+
+.controller('myPurchasesCtrl', function(user) {
+    let app             = this;
+
+    user.purchases().then((data) => {
+        app.loading = false;
+        app.purchases = data.data.response.data;
+    }).catch((error) => {
+        app.errorMsg = error.data.response.message;
+        app.loading = false;
+    })
 })
 
