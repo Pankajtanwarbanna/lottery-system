@@ -13,10 +13,15 @@
                 <div class="dt-card__body">
                     <!-- Form -->
                     <div class="form-row">
-                        <div class="col-sm-12 mb-3">
+                        <div class="col-sm-6 mb-3">
                             <label>Prize Name </label>
                             <input class="form-control" type="text" name="name" placeholder="Enter Prize Name"
                                 ng-model="addPrize.prizeData.name" required>
+                        </div>
+                        <div class="col-sm-6 mb-3">
+                            <label>Ticket Price </label>
+                            <input class="form-control" type="number" name="price" placeholder="Enter Ticket Price"
+                                ng-model="addPrize.prizeData.price" required>
                         </div>
                     </div>
                     <!-- /form -->
@@ -63,14 +68,6 @@
                                 ng-model="addPrize.prizeData.prizes[prizeIndex].date" required>
                         </div>
                     </div>
-
-                    <div class="form-row">
-                        <div class="col-sm-6 mb-3">
-                            <label>Cost </label>
-                            <input class="form-control" type="number" name="cost" placeholder="Enter prize ticket price"
-                                ng-model="addPrize.prizeData.prizes[prizeIndex].cost" required>
-                        </div>
-                    </div>
                     <!-- /form -->
                     <!-- /form -->
                     <!-- /card body -->
@@ -79,11 +76,11 @@
                 <!-- /card -->
             </div>
             <!-- /grid item -->
-            <button class="btn btn-primary" type="submit">Add Prize Now</button>
-
+            <button class="btn btn-primary" ng-click="addPrize.addPrizeNow()">Add Prize</button>
         </div>
         <!-- /grid -->
     </div>
+    <button class="btn btn-success mt-10 text-center" type="submit">Submit & Add Prize Now</button>
 
 </form>
 

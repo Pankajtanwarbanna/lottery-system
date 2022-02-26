@@ -12,7 +12,7 @@ exports.prize           = (req, res) => {
     
     const payload       = {
         'name'          : body.name,
-        'price'         : body.cost,
+        'price'         : body.price,
         'prizes'        : Object.values(body.prizes)
     }
 

@@ -36,18 +36,31 @@ angular.module('userCtrl',['userServices','fileModelDirective','uploadFileServic
 
 .controller('addPrizeCtrl', function(user) {
     let app             = this;
-    app.totalPrizes     = 3;
+    app.totalPrizes     = 0;
+
+    app.addPrizeNow     = () => {
+        app.totalPrizes += 1;
+    }
 
     app.addNewPrize     = (prizeData) => {
-        console.log(app.prizeData)
-        // validate the coupon value 
-        user.addNewPrize(app.prizeData).then((data) => {
+        app.errorMsg    = false;
+        app.loading     = true;
+
+        console.log(app.prizeData.prizes)
+        if(app.prizeData.prizes && Object.keys(app.prizeData.prizes).length > 0) {
+            // validate the coupon value 
+            user.addNewPrize(app.prizeData).then((data) => {
+                app.loading = false;
+                app.successMsg = 'Prize added successfully!';
+            }).catch((error) => {
+                app.errorMsg = error.data.response.message;
+                app.loading = false;
+            })
+        } else {
+            app.errorMsg = 'Empty prize not allowed.';
             app.loading = false;
-            app.successMsg = 'Prize added successfully!';
-        }).catch((error) => {
-            app.errorMsg = error.data.response.message;
-            app.loading = false;
-        })
+            console.log(app.errorMsg)
+        }
     }
 })
 
