@@ -167,7 +167,7 @@ angular
           value3.innerText = getRandomValue();
           value4.innerText = getRandomValue();
 
-          let speed = 2;
+          let speed = 5;
 
           animationId = setInterval(() => {
             value1.innerText = getRandomValue();
@@ -175,8 +175,7 @@ angular
             value3.innerText = getRandomValue();
             value4.innerText = getRandomValue();
             document.documentElement.style.setProperty("--speed", speed);
-            speed = parseInt(speed  - 0.05);
-            console.log(speed)
+            speed = parseFloat(speed  - 0.1);
             if (speed <= 0) {
               value1.innerText = yourCode.toString()[0];
               value2.innerText = yourCode.toString()[1];
@@ -196,7 +195,7 @@ angular
                 document.documentElement.style.setProperty("--speed", 0);
               }, 1000)
             }
-          }, 1000 / speed);
+          }, 2000 / speed);
         } else {
           animationId = setInterval(() => {
             value1.innerText = getRandomValue();
@@ -207,12 +206,12 @@ angular
         }
       }
 
-      document.documentElement.style.setProperty("--speed", 2);
+      document.documentElement.style.setProperty("--speed", 5);
 
       updateAnimation(3);
       $timeout(function () {
         updateAnimation("0");
-      }, 12000);
+      }, 2000);
     };
   })
 
