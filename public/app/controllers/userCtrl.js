@@ -141,6 +141,7 @@ angular
     app.spin = (index, yourCode, winnerCode) => {
         app.message = '';
       app.showSpin = {};
+      app.message = {};
       app.showSpin[index] = true;
 
       //javascript function
@@ -167,9 +168,9 @@ angular
           value4.innerText = yourCode.toString()[3];
           document.documentElement.style.setProperty("--speed", 0);
           if(yourCode.toString() == winnerCode.toString()) {
-              app.message = 'Yay! you have won the prize. Congratulations!'
+              app.message[index] = 'Yay! you have won the prize. Congratulations!'
           } else {
-              app.message = 'Oh, sorry! you could not win the prize. Better luck next time.'
+              app.message[index] = 'Oh, sorry! you could not win the prize. Better luck next time.'
           }
         } else {
           animationId = setInterval(() => {
