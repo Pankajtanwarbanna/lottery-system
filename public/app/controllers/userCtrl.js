@@ -139,7 +139,7 @@ angular
       });
 
     app.spin = (index, yourCode, winnerCode) => {
-        app.message = '';
+      app.message = "";
       app.showSpin = {};
       app.message = {};
       app.showSpin[index] = true;
@@ -162,16 +162,41 @@ angular
         if (animationId) clearInterval(animationId);
 
         if (newSpeed === "0") {
-          value1.innerText = yourCode.toString()[0];
-          value2.innerText = yourCode.toString()[1];
-          value3.innerText = yourCode.toString()[2];
-          value4.innerText = yourCode.toString()[3];
-          document.documentElement.style.setProperty("--speed", 0);
-          if(yourCode.toString() == winnerCode.toString()) {
-              app.message[index] = 'Yay! you have won the prize. Congratulations!'
-          } else {
-              app.message[index] = 'Oh, sorry! you could not win the prize. Better luck next time.'
-          }
+          value1.innerText = getRandomValue();
+          value2.innerText = getRandomValue();
+          value3.innerText = getRandomValue();
+          value4.innerText = getRandomValue();
+
+          let speed = 2;
+
+          animationId = setInterval(() => {
+            value1.innerText = getRandomValue();
+            value2.innerText = getRandomValue();
+            value3.innerText = getRandomValue();
+            value4.innerText = getRandomValue();
+            document.documentElement.style.setProperty("--speed", speed);
+            speed = parseInt(speed  - 0.05);
+            console.log(speed)
+            if (speed <= 0) {
+              value1.innerText = yourCode.toString()[0];
+              value2.innerText = yourCode.toString()[1];
+              value3.innerText = yourCode.toString()[2];
+              value4.innerText = yourCode.toString()[3];
+
+              if (yourCode.toString() == winnerCode.toString()) {
+                app.message[index] =
+                  "Yay! you have won the prize. Congratulations!";
+              } else {
+                app.message[index] =
+                  "Oh, sorry! you could not win the prize. Better luck next time.";
+              }
+              if (animationId) clearInterval(animationId);
+              document.documentElement.style.setProperty("--speed", 0.1);
+              $timeout(function() {
+                document.documentElement.style.setProperty("--speed", 0);
+              }, 1000)
+            }
+          }, 1000 / speed);
         } else {
           animationId = setInterval(() => {
             value1.innerText = getRandomValue();
@@ -185,9 +210,9 @@ angular
       document.documentElement.style.setProperty("--speed", 2);
 
       updateAnimation(3);
-      $timeout(function() {
+      $timeout(function () {
         updateAnimation("0");
-      },6000)
+      }, 12000);
     };
   })
 
