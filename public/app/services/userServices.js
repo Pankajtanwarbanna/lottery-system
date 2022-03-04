@@ -13,15 +13,23 @@ angular
     };
 
     userFactory.getPrizes = function (data) {
-      return $http.get("/api/prize" + (data?.prizeId ? '?prizeId=' + data.prizeId : ''));
+      if(data && data.prizeId) {
+        return $http.get("/api/prize" + '?prizeId=' + data.prizeId);
+      } else {
+        return $http.get("/api/prize");
+      }
     };
 
     userFactory.purchase = function ({ prizeId }) {
       return $http.post("/api/prize/" + prizeId + '/purchase');
     };
 
-    userFactory.purchases = function () {
-      return $http.get("/api/prize/purchases");
+    userFactory.purchases = function (data) {
+      if(data && data.purchaseId) {
+        return $http.get("/api/prize/purchases" + '?purchaseId=' + data.purchaseId);
+      } else {
+        return $http.get("/api/prize/purchases");
+      }
     };
 
 

@@ -1,113 +1,206 @@
 /*
     Controller written by - Pankaj tanwar
 */
-angular.module('userCtrl',['userServices','fileModelDirective','uploadFileService'])
+angular
+  .module("userCtrl", [
+    "userServices",
+    "fileModelDirective",
+    "uploadFileService",
+  ])
 
-.controller('usersCtrl', function (user) {
+  .controller("usersCtrl", function (user) {
     var app = this;
 
     // get all customers
-    user.getUsers().then(function (data) {
+    user
+      .getUsers()
+      .then(function (data) {
         app.users = data.data.response.data;
-    }).catch((error) => {
-        app.errorMsg = 'Something went wrong, please try again later.'
-    })
-})
+      })
+      .catch((error) => {
+        app.errorMsg = "Something went wrong, please try again later.";
+      });
+  })
 
-.controller('settingsCtrl', function (user, $timeout) {
-
+  .controller("settingsCtrl", function (user, $timeout) {
     var app = this;
 
     app.profileData = {};
 
     // update profile
     app.updateProfile = function (mainData) {
-        app.profileData.name = mainData.name;
-        user.updateProfile(app.profileData).then(function (data) {
-            app.successMsg = 'Your profile has been updated.';
-            $timeout(function () {
-                app.successMsg = '';
-            }, 2000);
-        }).catch((error) => {
-            app.errorMsg = 'Oops, something went wrong, please try again.';
+      app.profileData.name = mainData.name;
+      user
+        .updateProfile(app.profileData)
+        .then(function (data) {
+          app.successMsg = "Your profile has been updated.";
+          $timeout(function () {
+            app.successMsg = "";
+          }, 2000);
         })
+        .catch((error) => {
+          app.errorMsg = "Oops, something went wrong, please try again.";
+        });
     };
-})
+  })
 
-.controller('addPrizeCtrl', function(user) {
-    let app             = this;
-    app.totalPrizes     = 0;
+  .controller("addPrizeCtrl", function (user) {
+    let app = this;
+    app.totalPrizes = 0;
 
-    app.addPrizeNow     = () => {
-        app.totalPrizes += 1;
-    }
+    app.addPrizeNow = () => {
+      app.totalPrizes += 1;
+    };
 
-    app.addNewPrize     = (prizeData) => {
-        app.errorMsg    = false;
-        app.loading     = true;
+    app.addNewPrize = (prizeData) => {
+      app.errorMsg = false;
+      app.loading = true;
 
-        console.log(app.prizeData.prizes)
-        if(app.prizeData.prizes && Object.keys(app.prizeData.prizes).length > 0) {
-            // validate the coupon value 
-            user.addNewPrize(app.prizeData).then((data) => {
-                app.loading = false;
-                app.successMsg = 'Prize added successfully!';
-            }).catch((error) => {
-                app.errorMsg = error.data.response.message;
-                app.loading = false;
-            })
-        } else {
-            app.errorMsg = 'Empty prize not allowed.';
+      console.log(app.prizeData.prizes);
+      if (
+        app.prizeData.prizes &&
+        Object.keys(app.prizeData.prizes).length > 0
+      ) {
+        // validate the coupon value
+        user
+          .addNewPrize(app.prizeData)
+          .then((data) => {
             app.loading = false;
-            console.log(app.errorMsg)
-        }
-    }
-})
-
-.controller('prizesCtrl', function(user) {
-    let app             = this;
-
-    user.getPrizes().then((data) => {
-        app.loading = false;
-        app.prizes = data.data.response.data;
-    }).catch((error) => {
-        app.errorMsg = error.data.response.message;
-        app.loading = false;
-    })
-})
-
-.controller('prizeCtrl', function(user, $routeParams) {
-    let app             = this;
-
-    user.getPrizes({ prizeId : $routeParams.prizeId }).then((data) => {
-        app.loading = false;
-        app.prize = data.data.response.data[0];
-    }).catch((error) => {
-        app.errorMsg = error.data.response.message;
-        app.loading = false;
-    })
-
-    // purchase
-    app.purchaseNow    = () => {
-        user.purchase({ prizeId : $routeParams.prizeId }).then((data) => {
-            app.loading = false;
-            app.purchase = data.data.response;
-        }).catch((error) => {
+            app.successMsg = "Prize added successfully!";
+          })
+          .catch((error) => {
             app.errorMsg = error.data.response.message;
             app.loading = false;
-        })
-    }
-})
-
-.controller('myPurchasesCtrl', function(user) {
-    let app             = this;
-
-    user.purchases().then((data) => {
+          });
+      } else {
+        app.errorMsg = "Empty prize not allowed.";
         app.loading = false;
-        app.purchases = data.data.response.data;
-    }).catch((error) => {
+        console.log(app.errorMsg);
+      }
+    };
+  })
+
+  .controller("prizesCtrl", function (user) {
+    let app = this;
+
+    user
+      .getPrizes()
+      .then((data) => {
+        app.loading = false;
+        app.prizes = data.data.response.data;
+      })
+      .catch((error) => {
         app.errorMsg = error.data.response.message;
         app.loading = false;
-    })
-})
+      });
+  })
 
+  .controller("prizeCtrl", function (user, $routeParams) {
+    let app = this;
+
+    user
+      .getPrizes({ prizeId: $routeParams.prizeId })
+      .then((data) => {
+        app.loading = false;
+        app.prize = data.data.response.data[0];
+        console.log(app.prize);
+      })
+      .catch((error) => {
+        app.errorMsg = error.data.response.message;
+        app.loading = false;
+      });
+
+    // purchase
+    app.purchaseNow = () => {
+      user
+        .purchase({ prizeId: $routeParams.prizeId })
+        .then((data) => {
+          app.loading = false;
+          app.purchase = data.data.response;
+        })
+        .catch((error) => {
+          app.errorMsg = error.data.response.message;
+          app.loading = false;
+        });
+    };
+  })
+
+  .controller("resultCtrl", function (user, $routeParams, $timeout) {
+    let app = this;
+    user
+      .purchases({ purchaseId: $routeParams.purchaseId })
+      .then((data) => {
+        app.loading = false;
+        app.purchase = data.data.response.data[0];
+      })
+      .catch((error) => {
+        app.errorMsg = error.data.response.message;
+        app.loading = false;
+      });
+
+    app.spin = (index, yourCode, winnerCode) => {
+        app.message = '';
+      app.showSpin = {};
+      app.showSpin[index] = true;
+
+      //javascript function
+      let value1 = document.getElementById("value1");
+      let value2 = document.getElementById("value2");
+      let value3 = document.getElementById("value3");
+      let value4 = document.getElementById("value4");
+
+      let values = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+      function getRandomValue() {
+        return values[Math.floor(Math.random() * 7)];
+      }
+
+      let animationId;
+
+      function updateAnimation(newSpeed) {
+        if (animationId) clearInterval(animationId);
+
+        if (newSpeed === "0") {
+          value1.innerText = yourCode.toString()[0];
+          value2.innerText = yourCode.toString()[1];
+          value3.innerText = yourCode.toString()[2];
+          value4.innerText = yourCode.toString()[3];
+          document.documentElement.style.setProperty("--speed", 0);
+          if(yourCode.toString() == winnerCode.toString()) {
+              app.message = 'Yay! you have won the prize. Congratulations!'
+          } else {
+              app.message = 'Oh, sorry! you could not win the prize. Better luck next time.'
+          }
+        } else {
+          animationId = setInterval(() => {
+            value1.innerText = getRandomValue();
+            value2.innerText = getRandomValue();
+            value3.innerText = getRandomValue();
+            value4.innerText = getRandomValue();
+          }, 1000 / newSpeed);
+        }
+      }
+
+      document.documentElement.style.setProperty("--speed", 4);
+
+      updateAnimation(3);
+      $timeout(function() {
+        updateAnimation("0");
+      },8000)
+    };
+  })
+
+  .controller("myPurchasesCtrl", function (user) {
+    let app = this;
+
+    user
+      .purchases()
+      .then((data) => {
+        app.loading = false;
+        app.purchases = data.data.response.data;
+      })
+      .catch((error) => {
+        app.errorMsg = error.data.response.message;
+        app.loading = false;
+      });
+  });

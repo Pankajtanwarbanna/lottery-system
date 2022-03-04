@@ -16,7 +16,7 @@ var subscriptionSchema     = new mongoose.Schema({
         required    : true
     },
     code            : {
-        type        : String,
+        type        : Number,
         required    : true
     }
 }, {

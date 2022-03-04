@@ -94,11 +94,17 @@ exports.purchase        = (req, res) => {
 
 exports.purchases       = (req, res) => {
     const {
-        prizeId
-    }                   = req.params;
+        purchaseId
+    }                   = req.query;
 
+    let query           = { userId : req.user._id };
+
+    if(req.query.purchaseId) {
+        query           = underscore.extend(query, { _id : Utility.toObjectId(purchaseId) })
+    }
+    
     // get all registered prizes
-    prizeService.getSubscriptions({ userId : req.user._id }, (error, result) => {
+    prizeService.getSubscriptions(query, (error, result) => {
         if(error) {
             return res.status(400).json(response.build('ERROR', 
                 errorHelper.parseError(error) 
