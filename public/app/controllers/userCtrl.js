@@ -181,12 +181,12 @@ angular
         }
       }
 
-      document.documentElement.style.setProperty("--speed", 4);
+      document.documentElement.style.setProperty("--speed", 2);
 
       updateAnimation(3);
       $timeout(function() {
         updateAnimation("0");
-      },8000)
+      },6000)
     };
   })
 

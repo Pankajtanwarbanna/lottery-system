@@ -13,12 +13,6 @@
   display: flex;
 }
 
-#inpSpeed {                  
-  font-size: 30pt;
-  margin-left: 30px;     
-  width: 50px;
-}
-
 .slot {
   height: 250px;
   width: 250px;
@@ -33,6 +27,36 @@
   text-align: center;
   font-size: 100pt;
   line-height: 250px;
+}
+
+@media only screen and (max-width: 600px) {
+  .machine {
+    background-color: peru;
+    border: dashed brown 3px;
+    height: 60px;
+    width: 180px;
+    margin: 10px;
+  
+    z-index: 5;
+  
+    display: flex;
+  }
+  
+  .slot {
+    height: 50px;
+    width: 50px;
+    margin: 4px;
+  
+    overflow: hidden;
+  
+    z-index: 1;
+  
+    background-color: beige;
+    border: solid darkblue 2px;
+    text-align: center;
+    font-size: 20pt;
+    line-height: 50px;
+  }
 }
 
 .slot > .value {
