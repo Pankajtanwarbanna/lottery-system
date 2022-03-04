@@ -137,11 +137,11 @@ angular
         app.errorMsg = error.data.response.message;
         app.loading = false;
       });
+      app.message = {};
 
     app.spin = (index, yourCode, winnerCode) => {
-      app.message = "";
       app.showSpin = {};
-      app.message = {};
+      
       app.showSpin[index] = true;
 
       //javascript function
@@ -184,10 +184,10 @@ angular
 
               if (yourCode.toString() == winnerCode.toString()) {
                 app.message[index] =
-                  "Yay! you have won the prize. Congratulations!";
+                  `Yay! Winner code is ${winnerCode}, you have won the prize. Congratulations!`;
               } else {
                 app.message[index] =
-                  "Oh, sorry! you could not win the prize. Better luck next time.";
+                  `Oh, sorry! Winner code is ${winnerCode}, you could not win the prize. Better luck next time.`;
               }
               if (animationId) clearInterval(animationId);
               document.documentElement.style.setProperty("--speed", 0.1);
