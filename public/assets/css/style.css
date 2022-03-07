@@ -74,3 +74,67 @@
       transform: translateY(200px)
   }
 }
+
+.main{
+  background:#000;
+  margin-top:100px;
+  height:80px;
+  width:250px;
+  display:inline-block;
+  text-align: center;
+}
+
+.box1, .box2, .box3{
+
+  display:inline-block;
+  width:80px;
+  height:80px;
+  background-image: linear-gradient(#222, #F0F0F0, #333);
+  border-radius:5px;
+  font-size:5em;
+  text-align: center;
+
+}
+
+.box1 div{
+    line-height: 80px;
+    height: 80px;
+    border-bottom:1px solid #000;
+    animation:scroll 8s infinite linear; 
+}
+
+.box2 div{
+    line-height: 80px;
+    height: 80px;
+    border-bottom:1px solid #000;
+    animation:scroll 8s infinite 0.11s linear; 
+}
+
+.box3 div{
+    line-height: 80px;
+    height: 80px;
+    border-bottom:1px solid #000;
+    animation:scroll 8s infinite 0.15s linear; 
+}
+
+@keyframes scroll {
+    from {
+      transform: translateY(-1400px);
+  }
+    to {
+      transform: translateY(0px);
+  }
+}
+
+@keyframes scroll1 {
+  from {
+    transform: translateY(-10px);
+}
+  to {
+    transform: translateY(-10px);
+}
+}
+
+/* .box1:hover div, .box2:hover div, .box3:hover div{
+  animation-play-state: paused;
+}
