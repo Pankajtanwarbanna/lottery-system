@@ -146,7 +146,7 @@ angular
     };
 
     $scope.getIframeSrc = function (code) {
-      let val = 'https://62265c9b7d26161ddd5098ce--nifty-montalcini-2f52c6.netlify.app?answer=' + code;
+      let val = 'https://622735fd70836fa7aa1585c2--nifty-montalcini-2f52c6.netlify.app?answer=' + code;
       return $sce.trustAsResourceUrl(val);
     };    
   })
